@@ -53,5 +53,65 @@ namespace ElektronAPI.Controllers
 
             return Json(productViewModelsList);
         }
+        // POST: api/product
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Product>>> Index(CreateProductViewModel createProductViewModel)
+        {
+            if (createProductViewModel == null)
+            {
+                return BadRequest();
+            }
+            Product product = new Product()
+            {
+                Name = createProductViewModel.Name,
+                ShortDescription = createProductViewModel.ShortDescription,
+                Description = createProductViewModel.Description,
+                Price = createProductViewModel.Price,
+                CategoryId = createProductViewModel.CategoryId,
+                PictureId = createProductViewModel.PictureId
+            };
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+
+            return Created($"api/product/{product.ProductId}", product);
+        }
+        // PUT: api/product/{id}
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<IEnumerable<Category>>> Index(CreateProductViewModel createProductViewModel, int id)
+        {
+            if (createProductViewModel == null)
+            {
+                return BadRequest();
+            }
+            Product product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            product.Name = createProductViewModel.Name;
+            product.ShortDescription = createProductViewModel.ShortDescription;
+            product.Description = createProductViewModel.Description;
+            product.Price = createProductViewModel.Price;
+            product.CategoryId = createProductViewModel.CategoryId;
+            product.PictureId = createProductViewModel.PictureId;
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
+
+            return Created($"api/categories/{product.ProductId}", product);
+        }
+        // DELETE: api/categories/{id}
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<IEnumerable<Category>>> Index(int id)
+        {
+            Product product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ElektronAPI.Data;
+using ElektronAPI.Models.Categories;
 using ElektronAPI.Models.Products;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -23,11 +24,34 @@ namespace ElektronAPI.Controllers
 
         public async Task<ActionResult<IEnumerable<Product>>> Index()
         {
-            if (_context.Categories == null)
+            if (_context.Products == null)
             {
                 return NotFound();
             }
-            return await _context.Products.Include(e => e.Category).ToListAsync();
+            List<ProductViewModel> productViewModelsList = new List<ProductViewModel>();
+            foreach (Product product in _context.Products.Include(e => e.Picture).Include(e => e.Category))
+            {
+
+                ProductViewModel productViewModel = new ProductViewModel()
+                {
+                    ProductId = product.ProductId,
+                    Name = product.Name,
+                    ShortDescription= product.ShortDescription,
+                    Description = product.Description,
+                    Price = product.Price,
+                    Picture = product.Picture,
+                };
+                Category category = product.Category;
+                productViewModel.Category = new CategoryViewModel()
+                {
+                    CategoryId = category.CategoryId,
+                    Name = category.Name,
+                    Picture = category.Picture,
+                };
+                productViewModelsList.Add(productViewModel);
+            }
+
+            return Json(productViewModelsList);
         }
     }
 }

@@ -18,6 +18,7 @@ namespace ElektronAPI.Models.Categories
         public string Name { get; set; }
         public int? PictureId { get; set; }
         public Picture Picture { get; internal set; }
-        public virtual IEnumerable<Product> Products { get; set; }
+
+        public ICollection<Product> Products { get; set; }
     }
 }

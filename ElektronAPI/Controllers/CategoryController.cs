@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ElektronAPI.Controllers
 {
-    [EnableCors("MyPolicy")]
+    [EnableCors("Api")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : Controller
@@ -58,6 +58,58 @@ namespace ElektronAPI.Controllers
             }
             
             return Json(categoryViewModelList);
+        }
+        // POST: api/categories
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Category>>> Index(CreateCategoryViewModel createCategoryViewModel)
+        {
+            if (createCategoryViewModel == null)
+            {
+                return BadRequest();
+            }
+            Category category = new Category()
+            {
+                Name = createCategoryViewModel.Name,
+                PictureId = createCategoryViewModel.PictureId,
+            };
+            _context.Categories.Add(category);
+            await _context.SaveChangesAsync();
+
+            return Created($"api/categories/{category.CategoryId}", category);
+        }
+        // PUT: api/categories/{id}
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<IEnumerable<Category>>> Index(CreateCategoryViewModel createCategoryViewModel, int id)
+        {
+            if (createCategoryViewModel == null)
+            {
+                return BadRequest();
+            }
+            Category category = await _context.Categories.FindAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            category.Name = createCategoryViewModel.Name;
+            category.PictureId = createCategoryViewModel.PictureId;
+            _context.Categories.Update(category);
+            await _context.SaveChangesAsync();
+
+            return Created($"api/categories/{category.CategoryId}", category);
+        }
+        // DELETE: api/categories/{id}
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<IEnumerable<Category>>> Index( int id)
+        {
+            Category category = await _context.Categories.FindAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

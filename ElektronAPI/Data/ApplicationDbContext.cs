@@ -118,6 +118,11 @@ namespace ElektronAPI.Data
             });
 
         }
-            #endregion
+
+        internal bool Find(int id)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElektronAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220706112822_OrderSystemWithUser")]
+    [Migration("20220706132929_OrderSystemWithUser")]
     partial class OrderSystemWithUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -122,17 +122,17 @@ namespace ElektronAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "dbf6a937-6557-480b-9c06-af02f38da5bd",
+                            Id = "02e14220-f510-4821-bd6f-5a4c29998017",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "819f82fe-e0b1-49e1-a61d-f831c3862c5a",
+                            ConcurrencyStamp = "aefb7d6c-6eaa-4d03-a6ac-f91d32ce6b9e",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEASdF0yOsWSA5mtUhrLxw2oLo3Qla2qcU64esEo9OEIcfYLcrI9mRUIuWIHWaGDGeg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM2PdGWhd32GGa7egqt11qodG0QZ+2NNXWJr/QIGugBDRzhx1S+bexDVLsSm/SGi2g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2185c772-5808-4fea-8247-2bf1c2ce4f80",
+                            SecurityStamp = "10a008a4-1963-4889-beb5-074d4f736003",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         });
@@ -206,9 +206,9 @@ namespace ElektronAPI.Migrations
                         new
                         {
                             OrderId = 1,
-                            CustomerId = "dbf6a937-6557-480b-9c06-af02f38da5bd",
+                            CustomerId = "02e14220-f510-4821-bd6f-5a4c29998017",
                             Total = 600,
-                            timeDate = new DateTime(2022, 7, 6, 13, 28, 21, 779, DateTimeKind.Local).AddTicks(8349)
+                            timeDate = new DateTime(2022, 7, 6, 15, 29, 28, 908, DateTimeKind.Local).AddTicks(3347)
                         });
                 });
 
@@ -353,15 +353,15 @@ namespace ElektronAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d5e79412-e634-47ec-94fd-961a544ed09a",
-                            ConcurrencyStamp = "0c1a6795-af85-457f-99d1-b05275770c3b",
+                            Id = "97e3c08c-10cc-4a13-9651-190fe3101d6d",
+                            ConcurrencyStamp = "b1ddb93f-d478-431a-94ec-937c180aa63a",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "d6475b91-d12c-4a22-ad45-583f9af4ee1a",
-                            ConcurrencyStamp = "f865dc77-d479-4203-81ec-e87afab61f0a",
+                            Id = "f2883e6c-b353-478a-98d9-e66ec8ecc801",
+                            ConcurrencyStamp = "f1ca1e9c-2dbf-4cba-bb0c-d0b061ddf4a5",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -456,8 +456,8 @@ namespace ElektronAPI.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "dbf6a937-6557-480b-9c06-af02f38da5bd",
-                            RoleId = "d5e79412-e634-47ec-94fd-961a544ed09a"
+                            UserId = "02e14220-f510-4821-bd6f-5a4c29998017",
+                            RoleId = "97e3c08c-10cc-4a13-9651-190fe3101d6d"
                         });
                 });
 

@@ -38,6 +38,7 @@ namespace API
             }));
             
             services.AddControllers();
+            
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddSwaggerGen(c =>
@@ -50,6 +51,7 @@ namespace API
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = false)
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,8 +65,9 @@ namespace API
             }
             app.UseStaticFiles();
             app.UseHttpsRedirection();
-            app.UseCors();
+            
             app.UseRouting();
+            app.UseCors();
             app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
@@ -73,6 +76,7 @@ namespace API
             {
                 endpoints.MapControllers();
             });
+            
         }
     }
 }

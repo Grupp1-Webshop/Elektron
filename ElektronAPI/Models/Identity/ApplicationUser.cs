@@ -6,6 +6,6 @@ namespace ElektronAPI.Models.Identity
 {
     public class ApplicationUser : IdentityUser
     {
-        public ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

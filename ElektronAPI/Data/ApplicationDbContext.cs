@@ -13,13 +13,19 @@ namespace ElektronAPI.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Order> Orders { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            
+        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+            
         }
         #region Required
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,9 +46,6 @@ namespace ElektronAPI.Data
                 .HasMany(e => e.Products)
                 .WithOne(e => e.Category);
             modelBuilder.Entity<Product>()
-                .HasOne(e => e.Category)
-                .WithMany(e => e.Products);
-            modelBuilder.Entity<Product>()
                 .HasOne(e => e.Picture)
                 .WithMany()
                 .OnDelete(DeleteBehavior.SetNull);
@@ -61,9 +64,6 @@ namespace ElektronAPI.Data
             modelBuilder.Entity<Order>()
                 .HasOne(e => e.Customer)
                 .WithMany(e => e.Orders);
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(e => e.Orders)
-                .WithOne(e => e.Customer);
             modelBuilder.Entity<Picture>().HasData(picture1, picture2, picture3);
             modelBuilder.Entity<Category>().HasData(category);
             modelBuilder.Entity<Product>().HasData(product1, product2, product3);

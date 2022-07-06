@@ -272,14 +272,14 @@ namespace ElektronAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "d5e79412-e634-47ec-94fd-961a544ed09a", "0c1a6795-af85-457f-99d1-b05275770c3b", "Admin", "ADMIN" },
-                    { "d6475b91-d12c-4a22-ad45-583f9af4ee1a", "f865dc77-d479-4203-81ec-e87afab61f0a", "User", "USER" }
+                    { "97e3c08c-10cc-4a13-9651-190fe3101d6d", "b1ddb93f-d478-431a-94ec-937c180aa63a", "Admin", "ADMIN" },
+                    { "f2883e6c-b353-478a-98d9-e66ec8ecc801", "f1ca1e9c-2dbf-4cba-bb0c-d0b061ddf4a5", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbf6a937-6557-480b-9c06-af02f38da5bd", 0, "819f82fe-e0b1-49e1-a61d-f831c3862c5a", "admin@admin.com", false, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEASdF0yOsWSA5mtUhrLxw2oLo3Qla2qcU64esEo9OEIcfYLcrI9mRUIuWIHWaGDGeg==", null, false, "2185c772-5808-4fea-8247-2bf1c2ce4f80", false, "admin@admin.com" });
+                values: new object[] { "02e14220-f510-4821-bd6f-5a4c29998017", 0, "aefb7d6c-6eaa-4d03-a6ac-f91d32ce6b9e", "admin@admin.com", false, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEM2PdGWhd32GGa7egqt11qodG0QZ+2NNXWJr/QIGugBDRzhx1S+bexDVLsSm/SGi2g==", null, false, "10a008a4-1963-4889-beb5-074d4f736003", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Pictures",
@@ -294,7 +294,7 @@ namespace ElektronAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "d5e79412-e634-47ec-94fd-961a544ed09a", "dbf6a937-6557-480b-9c06-af02f38da5bd" });
+                values: new object[] { "97e3c08c-10cc-4a13-9651-190fe3101d6d", "02e14220-f510-4821-bd6f-5a4c29998017" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -304,7 +304,7 @@ namespace ElektronAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "OrderId", "CustomerId", "Total", "timeDate" },
-                values: new object[] { 1, "dbf6a937-6557-480b-9c06-af02f38da5bd", 600, new DateTime(2022, 7, 6, 13, 28, 21, 779, DateTimeKind.Local).AddTicks(8349) });
+                values: new object[] { 1, "02e14220-f510-4821-bd6f-5a4c29998017", 600, new DateTime(2022, 7, 6, 15, 29, 28, 908, DateTimeKind.Local).AddTicks(3347) });
 
             migrationBuilder.InsertData(
                 table: "Products",

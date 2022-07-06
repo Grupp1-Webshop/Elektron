@@ -23,7 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Data\Categories\" />
+    <Folder Include="Data\OrderProducts\" />
+    <Folder Include="Data\Pictures\" />
+    <Folder Include="Data\Products\" />
+    <Folder Include="Data\Orders\" />
   </ItemGroup>
 
 </Project>

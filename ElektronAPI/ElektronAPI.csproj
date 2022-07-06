@@ -22,12 +22,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\Categories\" />
-    <Folder Include="Data\OrderProducts\" />
-    <Folder Include="Data\Pictures\" />
-    <Folder Include="Data\Products\" />
-    <Folder Include="Data\Orders\" />
-  </ItemGroup>
-
 </Project>

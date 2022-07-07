@@ -2,6 +2,7 @@
 using ElektronAPI.Models.Identity;
 using ElektronAPI.Models.Login;
 using ElektronAPI.Models.Orders;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,12 @@ namespace ElektronAPI.Controllers
     public class RegisterController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationDbContext _context;
-        public RegisterController(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
+        public RegisterController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext context)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
             _context = context;
         }
 
@@ -32,32 +35,41 @@ namespace ElektronAPI.Controllers
                 return Unauthorized();
             }
 
-            //if user exists and pass is correct , return user information
+            var result = await _signInManager.PasswordSignInAsync(user,
+                           login.Password, true, lockoutOnFailure: true);
 
-            
-            List<OrderViewModel> orders = new List<OrderViewModel>();
-
-            foreach (Order order in _context.Orders.ToList())
+            if (result.Succeeded)
             {
-                OrderViewModel orderViewModel = new OrderViewModel
+                List<OrderViewModel> orders = new List<OrderViewModel>();
+
+                foreach (Order order in _context.Orders.ToList())
                 {
-                    CustomerId = order.CustomerId,
-                    OrderId = order.OrderId,
-                    timeDate = order.timeDate,
-                    Total = order.Total,
+                    OrderViewModel orderViewModel = new OrderViewModel
+                    {
+                        CustomerId = order.CustomerId,
+                        OrderId = order.OrderId,
+                        timeDate = order.timeDate,
+                        Total = order.Total,
+                    };
+                    orders.Add(orderViewModel);
+                }
+
+                UserViewModel userViewModel = new UserViewModel()
+                {
+                    Name = user.UserName,
+                    Email = user.Email,
+                    Orders = orders
                 };
-                orders.Add(orderViewModel);
+
+
+                return Json(userViewModel);
+            }
+            else
+            {
+                return BadRequest();
             }
 
-            UserViewModel userViewModel = new UserViewModel()
-            {
-                Name = user.UserName,
-                Email = user.Email,
-                Orders = orders
-            };
-
-
-            return Json(userViewModel);
+            
         }
 
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElektronAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220706132929_OrderSystemWithUser")]
-    partial class OrderSystemWithUser
+    [Migration("20220707090002_Picture-Update")]
+    partial class PictureUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -122,17 +122,17 @@ namespace ElektronAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "02e14220-f510-4821-bd6f-5a4c29998017",
+                            Id = "1a4746ba-f275-4764-9687-41871ace024f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "aefb7d6c-6eaa-4d03-a6ac-f91d32ce6b9e",
+                            ConcurrencyStamp = "ce49932b-eb22-4a14-99be-c2ae18b516d8",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEM2PdGWhd32GGa7egqt11qodG0QZ+2NNXWJr/QIGugBDRzhx1S+bexDVLsSm/SGi2g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJbUhEgHKoBnngKsiLxPsohtfo74rNelonDk30swzz9EkETMf0/Rq93R8E3dRPBH3w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "10a008a4-1963-4889-beb5-074d4f736003",
+                            SecurityStamp = "fe8f9ba4-2f3c-47fc-98b3-b29a75402c83",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         });
@@ -206,9 +206,9 @@ namespace ElektronAPI.Migrations
                         new
                         {
                             OrderId = 1,
-                            CustomerId = "02e14220-f510-4821-bd6f-5a4c29998017",
+                            CustomerId = "1a4746ba-f275-4764-9687-41871ace024f",
                             Total = 600,
-                            timeDate = new DateTime(2022, 7, 6, 15, 29, 28, 908, DateTimeKind.Local).AddTicks(3347)
+                            timeDate = new DateTime(2022, 7, 7, 11, 0, 2, 252, DateTimeKind.Local).AddTicks(3289)
                         });
                 });
 
@@ -225,8 +225,7 @@ namespace ElektronAPI.Migrations
 
                     b.Property<string>("Uri")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PictureId");
 
@@ -353,15 +352,15 @@ namespace ElektronAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "97e3c08c-10cc-4a13-9651-190fe3101d6d",
-                            ConcurrencyStamp = "b1ddb93f-d478-431a-94ec-937c180aa63a",
+                            Id = "824dcf4c-5cc1-43f0-b5a2-b08a1e3b7ae3",
+                            ConcurrencyStamp = "5538ad2c-c1cd-48e7-badd-e8dd846956ea",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "f2883e6c-b353-478a-98d9-e66ec8ecc801",
-                            ConcurrencyStamp = "f1ca1e9c-2dbf-4cba-bb0c-d0b061ddf4a5",
+                            Id = "857674f1-1857-4cb6-a4d2-8856df3ec77d",
+                            ConcurrencyStamp = "3329520f-4ea0-4632-8c56-6e9fca83b02e",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -456,8 +455,8 @@ namespace ElektronAPI.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "02e14220-f510-4821-bd6f-5a4c29998017",
-                            RoleId = "97e3c08c-10cc-4a13-9651-190fe3101d6d"
+                            UserId = "1a4746ba-f275-4764-9687-41871ace024f",
+                            RoleId = "824dcf4c-5cc1-43f0-b5a2-b08a1e3b7ae3"
                         });
                 });
 

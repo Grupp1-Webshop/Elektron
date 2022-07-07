@@ -10,7 +10,6 @@ namespace ElektronAPI.Models.Pictures
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PictureId { get; set; }
         [Required]
-        [StringLength(50)]
         public string Uri { get; set; }
         public string Alt { get; set; }
     }

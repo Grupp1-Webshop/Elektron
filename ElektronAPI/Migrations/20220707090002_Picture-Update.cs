@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ElektronAPI.Migrations
 {
-    public partial class OrderSystemWithUser : Migration
+    public partial class PictureUpdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,7 +54,7 @@ namespace ElektronAPI.Migrations
                 {
                     PictureId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Uri = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Uri = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Alt = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -272,14 +272,14 @@ namespace ElektronAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "97e3c08c-10cc-4a13-9651-190fe3101d6d", "b1ddb93f-d478-431a-94ec-937c180aa63a", "Admin", "ADMIN" },
-                    { "f2883e6c-b353-478a-98d9-e66ec8ecc801", "f1ca1e9c-2dbf-4cba-bb0c-d0b061ddf4a5", "User", "USER" }
+                    { "824dcf4c-5cc1-43f0-b5a2-b08a1e3b7ae3", "5538ad2c-c1cd-48e7-badd-e8dd846956ea", "Admin", "ADMIN" },
+                    { "857674f1-1857-4cb6-a4d2-8856df3ec77d", "3329520f-4ea0-4632-8c56-6e9fca83b02e", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "02e14220-f510-4821-bd6f-5a4c29998017", 0, "aefb7d6c-6eaa-4d03-a6ac-f91d32ce6b9e", "admin@admin.com", false, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEM2PdGWhd32GGa7egqt11qodG0QZ+2NNXWJr/QIGugBDRzhx1S+bexDVLsSm/SGi2g==", null, false, "10a008a4-1963-4889-beb5-074d4f736003", false, "admin@admin.com" });
+                values: new object[] { "1a4746ba-f275-4764-9687-41871ace024f", 0, "ce49932b-eb22-4a14-99be-c2ae18b516d8", "admin@admin.com", false, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEJbUhEgHKoBnngKsiLxPsohtfo74rNelonDk30swzz9EkETMf0/Rq93R8E3dRPBH3w==", null, false, "fe8f9ba4-2f3c-47fc-98b3-b29a75402c83", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Pictures",
@@ -294,7 +294,7 @@ namespace ElektronAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "97e3c08c-10cc-4a13-9651-190fe3101d6d", "02e14220-f510-4821-bd6f-5a4c29998017" });
+                values: new object[] { "824dcf4c-5cc1-43f0-b5a2-b08a1e3b7ae3", "1a4746ba-f275-4764-9687-41871ace024f" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -304,7 +304,7 @@ namespace ElektronAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "OrderId", "CustomerId", "Total", "timeDate" },
-                values: new object[] { 1, "02e14220-f510-4821-bd6f-5a4c29998017", 600, new DateTime(2022, 7, 6, 15, 29, 28, 908, DateTimeKind.Local).AddTicks(3347) });
+                values: new object[] { 1, "1a4746ba-f275-4764-9687-41871ace024f", 600, new DateTime(2022, 7, 7, 11, 0, 2, 252, DateTimeKind.Local).AddTicks(3289) });
 
             migrationBuilder.InsertData(
                 table: "Products",

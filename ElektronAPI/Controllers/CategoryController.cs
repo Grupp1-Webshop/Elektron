@@ -25,7 +25,7 @@ namespace ElektronAPI.Controllers
 
         public async Task<ActionResult<IEnumerable<Category>>> Index()
         {
-
+            
             if(_context.Categories == null)
             {
                 return NotFound();

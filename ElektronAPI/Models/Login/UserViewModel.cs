@@ -8,6 +8,6 @@ namespace ElektronAPI.Models.Login
         public string Name { get; set; }
         public string Email { get; set; }
         
-        public List<Order> Orders { get; set; }
+        public List<OrderViewModel> Orders { get; set; }
     }
 }

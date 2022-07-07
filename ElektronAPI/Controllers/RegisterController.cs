@@ -35,11 +35,18 @@ namespace ElektronAPI.Controllers
             //if user exists and pass is correct , return user information
 
             
-            List<Order> orders = new List<Order>();
+            List<OrderViewModel> orders = new List<OrderViewModel>();
 
             foreach (Order order in _context.Orders.ToList())
             {
-                orders.Add(order);
+                OrderViewModel orderViewModel = new OrderViewModel
+                {
+                    CustomerId = order.CustomerId,
+                    OrderId = order.OrderId,
+                    timeDate = order.timeDate,
+                    Total = order.Total,
+                };
+                orders.Add(orderViewModel);
             }
 
             UserViewModel userViewModel = new UserViewModel()

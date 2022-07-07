@@ -2,6 +2,7 @@
 using ElektronAPI.Models.Identity;
 using ElektronAPI.Models.Login;
 using ElektronAPI.Models.Orders;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,33 @@ namespace ElektronAPI.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+        }
+
+        [HttpPost("Register")]
+        public async Task<ActionResult> Register(Register register)
+        {
+            var user = new ApplicationUser()
+            {
+                UserName = register.Username,
+                Email = register.Email,
+            };
+
+            var result = await _userManager.CreateAsync(user, register.Password);
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(error.Code, error.Description);
+
+                }
+
+                return ValidationProblem();
+            }
+
+            await _userManager.AddToRoleAsync(user, "User");
+
+            return StatusCode(201);
         }
 
         [HttpPost("Login")]
@@ -69,36 +97,20 @@ namespace ElektronAPI.Controllers
                 return BadRequest();
             }
 
-            
         }
 
 
-
-        [HttpPost("Register")]
-        public async Task<ActionResult> Register(Register register)
+        [Authorize]
+        [HttpPost("Logout")]
+        public async Task<ActionResult> Logout()
         {
-            var user = new ApplicationUser()
-            {
-                UserName = register.Username,
-                Email = register.Email,
-            };
 
-            var result = await _userManager.CreateAsync(user, register.Password);
+            await _signInManager.SignOutAsync();
 
-            if (!result.Succeeded)
-            {
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(error.Code, error.Description);
 
-                }
+            /*return RedirectToPage("/"); */
 
-                return ValidationProblem();
-            }
-
-            await _userManager.AddToRoleAsync(user, "User");
-
-            return StatusCode(201);
+            return StatusCode(200);
         }
     }
 }

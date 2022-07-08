@@ -35,7 +35,7 @@ namespace ElektronAPI.Controllers
 
 
             List<OrderViewModel> orderViewModelList = new List<OrderViewModel>();
-            foreach (Order order in _context.Orders)
+            foreach (Order order in _context.Orders.Include(e => e.OrderProducts))
             {
 
                 OrderViewModel orderViewModel = new OrderViewModel()
@@ -94,7 +94,7 @@ namespace ElektronAPI.Controllers
             {
                 Customer = createOrderViewModel.Customer,
                 CustomerId = createOrderViewModel.CustomerId,
-                OrderProducts = createOrderViewModel.OrderProducts,
+                OrderProducts = (ICollection<OrderProduct>)createOrderViewModel.OrderProducts,
                 Total = createOrderViewModel.Total,
                 timeDate = createOrderViewModel.timeDate
             };
@@ -121,7 +121,7 @@ namespace ElektronAPI.Controllers
 
             order.Customer = createOrderViewModel.Customer;
             order.CustomerId = createOrderViewModel.CustomerId;
-            order.OrderProducts = createOrderViewModel.OrderProducts;
+            order.OrderProducts = (ICollection<OrderProduct>)createOrderViewModel.OrderProducts;
             order.Total = createOrderViewModel.Total;
             order.timeDate = createOrderViewModel.timeDate;
             _context.Orders.Update(order);

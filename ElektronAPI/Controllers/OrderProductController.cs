@@ -1,5 +1,6 @@
 ﻿using ElektronAPI.Data;
 using ElektronAPI.Models.OrderProducts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ElektronAPI.Controllers
 {
+    [Authorize]
     [EnableCors("Api")]
     [Route("api/[controller]")]
     [ApiController]

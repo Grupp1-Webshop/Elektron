@@ -1,6 +1,7 @@
 ﻿using ElektronAPI.Data;
 using ElektronAPI.Models.Categories;
 using ElektronAPI.Models.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -59,6 +60,8 @@ namespace ElektronAPI.Controllers
             
             return Json(categoryViewModelList);
         }
+
+        [Authorize(Roles = "Admin")]
         // POST: api/categories
         [HttpPost]
         public async Task<ActionResult<IEnumerable<Category>>> Index(CreateCategoryViewModel createCategoryViewModel)
@@ -77,6 +80,8 @@ namespace ElektronAPI.Controllers
 
             return Created($"api/categories/{category.CategoryId}", category);
         }
+
+        [Authorize(Roles = "Admin")]
         // PUT: api/categories/{id}
         [HttpPut("{id:int}")]
         public async Task<ActionResult<IEnumerable<Category>>> Index(CreateCategoryViewModel createCategoryViewModel, int id)
@@ -97,6 +102,8 @@ namespace ElektronAPI.Controllers
 
             return Created($"api/categories/{category.CategoryId}", category);
         }
+
+        [Authorize(Roles = "Admin")]
         // DELETE: api/categories/{id}
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<IEnumerable<Category>>> Index( int id)

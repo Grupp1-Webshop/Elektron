@@ -1,5 +1,6 @@
 ﻿using ElektronAPI.Data;
 using ElektronAPI.Models.Pictures;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ElektronAPI.Controllers
 {
-
+    
     [Route("api/[controller]")]
     [ApiController]
     public class PicturesController : Controller
@@ -34,7 +35,10 @@ namespace ElektronAPI.Controllers
 
             return Json(picturesList);
         }
+
+
         // POST: api/categories
+        [Authorize(Roles = "Admin")]
         [EnableCors("Api")]
         [HttpPost]
         public async Task<ActionResult<IEnumerable<Picture>>> Index([FromForm] CreatePictureViewModel createPictureView)
@@ -65,6 +69,8 @@ namespace ElektronAPI.Controllers
                 return BadRequest();
             }
         }
+
+        [Authorize(Roles = "Admin")]
         // DELETE: api/categories/{id}
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<IEnumerable<Picture>>> Index(int id)

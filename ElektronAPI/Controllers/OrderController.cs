@@ -3,6 +3,7 @@ using ElektronAPI.Models.Categories;
 using ElektronAPI.Models.OrderProducts;
 using ElektronAPI.Models.Orders;
 using ElektronAPI.Models.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace ElektronAPI.Controllers
 {
+    
     [EnableCors("Api")]
     [Route("api/[controller]")]
     [ApiController]
@@ -23,6 +25,7 @@ namespace ElektronAPI.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpGet]
 
         public async Task<ActionResult<IEnumerable<Order>>> Index()
@@ -67,7 +70,7 @@ namespace ElektronAPI.Controllers
 
         }
 
-
+        [Authorize]
         // POST: api/orders
         [HttpPost]
         public async Task<ActionResult<IEnumerable<Order>>> Index(CreateOrderViewModel createOrderViewModel)
@@ -90,6 +93,7 @@ namespace ElektronAPI.Controllers
             return Created($"api/orders/{order.OrderId}", order);
         }
 
+        [Authorize(Roles = "Admin")]
         // PUT: api/product/{id}
         [HttpPut("{id:int}")]
         public async Task<ActionResult<IEnumerable<Order>>> Index(CreateOrderViewModel createOrderViewModel, int id)
@@ -116,6 +120,7 @@ namespace ElektronAPI.Controllers
             return Created($"api/orders/{order.OrderId}", order);
         }
 
+        [Authorize(Roles = "Admin")]
         // DELETE: api/orders/{id}
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<IEnumerable<Order>>> Index(int id)

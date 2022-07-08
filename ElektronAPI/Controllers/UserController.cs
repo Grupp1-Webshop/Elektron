@@ -1,6 +1,7 @@
 ﻿using ElektronAPI.Data;
 using ElektronAPI.Models.Identity;
 using ElektronAPI.Models.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,7 @@ namespace ElektronAPI.Controllers
             _userManager = userManager;
             _context = context;
         }
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> index()
         {
@@ -35,6 +37,7 @@ namespace ElektronAPI.Controllers
             };
             return Json(userViewModel);
         }
+        [Authorize]
         [HttpPut]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> index(UpdateUserViewModel updateUserViewModel)
         {
@@ -54,6 +57,7 @@ namespace ElektronAPI.Controllers
                 return BadRequest();
             }
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet("UserList")]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> List()
         {

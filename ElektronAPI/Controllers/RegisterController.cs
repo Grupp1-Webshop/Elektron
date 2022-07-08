@@ -25,7 +25,7 @@ namespace ElektronAPI.Controllers
             _context = context;
         }
 
-        [HttpPost("Register")]
+        [HttpPost("api/Register")]
         public async Task<ActionResult> Register(Register register)
         {
             var user = new ApplicationUser()
@@ -52,7 +52,7 @@ namespace ElektronAPI.Controllers
             return StatusCode(201);
         }
 
-        [HttpPost("Login")]
+        [HttpPost("api/Login")]
         public async Task<ActionResult<UserViewModel>> Login(Login login)
         {
             //search for user
@@ -101,7 +101,7 @@ namespace ElektronAPI.Controllers
 
 
         [Authorize]
-        [HttpPost("Logout")]
+        [HttpPost("api/Logout")]
         public async Task<ActionResult> Logout()
         {
 

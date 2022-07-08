@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElektronAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220707090002_Picture-Update")]
-    partial class PictureUpdate
+    [Migration("20220708094232_Merged-Version")]
+    partial class MergedVersion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -122,17 +122,17 @@ namespace ElektronAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1a4746ba-f275-4764-9687-41871ace024f",
+                            Id = "1e68f8bf-217a-403f-92d1-2e21811041b6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ce49932b-eb22-4a14-99be-c2ae18b516d8",
+                            ConcurrencyStamp = "e83276b8-48a4-4d3d-88aa-9ddad68ad782",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJbUhEgHKoBnngKsiLxPsohtfo74rNelonDk30swzz9EkETMf0/Rq93R8E3dRPBH3w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKLQCrMaZxTeOuT9gCKxC7D4ljjUHQ9VGvLNObABxYLJRt1XrYmeSJR2ouoK9WK8vA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fe8f9ba4-2f3c-47fc-98b3-b29a75402c83",
+                            SecurityStamp = "cbb0e1cf-1a33-44e1-b737-8549e74a468d",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         });
@@ -206,9 +206,9 @@ namespace ElektronAPI.Migrations
                         new
                         {
                             OrderId = 1,
-                            CustomerId = "1a4746ba-f275-4764-9687-41871ace024f",
+                            CustomerId = "1e68f8bf-217a-403f-92d1-2e21811041b6",
                             Total = 600,
-                            timeDate = new DateTime(2022, 7, 7, 11, 0, 2, 252, DateTimeKind.Local).AddTicks(3289)
+                            timeDate = new DateTime(2022, 7, 8, 11, 42, 31, 734, DateTimeKind.Local).AddTicks(8003)
                         });
                 });
 
@@ -352,15 +352,15 @@ namespace ElektronAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "824dcf4c-5cc1-43f0-b5a2-b08a1e3b7ae3",
-                            ConcurrencyStamp = "5538ad2c-c1cd-48e7-badd-e8dd846956ea",
+                            Id = "de0b247f-1641-4e33-a432-8db635352846",
+                            ConcurrencyStamp = "ea3c7802-4657-4fd6-88c5-4f3a64c84af7",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "857674f1-1857-4cb6-a4d2-8856df3ec77d",
-                            ConcurrencyStamp = "3329520f-4ea0-4632-8c56-6e9fca83b02e",
+                            Id = "53921a65-6daf-42df-95f2-1757982e4c81",
+                            ConcurrencyStamp = "714aebf0-06a7-44eb-ade9-f43c6fd332c8",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -455,8 +455,8 @@ namespace ElektronAPI.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "1a4746ba-f275-4764-9687-41871ace024f",
-                            RoleId = "824dcf4c-5cc1-43f0-b5a2-b08a1e3b7ae3"
+                            UserId = "1e68f8bf-217a-403f-92d1-2e21811041b6",
+                            RoleId = "de0b247f-1641-4e33-a432-8db635352846"
                         });
                 });
 

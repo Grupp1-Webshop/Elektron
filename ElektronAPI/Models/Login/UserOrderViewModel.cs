@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ElektronAPI.Models.Login
 {
-    public class OrderViewModel
+    public class UserOrderViewModel
     {
         [Key]
         [ScaffoldColumn(false)]

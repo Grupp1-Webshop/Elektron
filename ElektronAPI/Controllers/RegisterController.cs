@@ -68,18 +68,18 @@ namespace ElektronAPI.Controllers
 
             if (result.Succeeded)
             {
-                List<OrderViewModel> orders = new List<OrderViewModel>();
+                List<UserOrderViewModel> orders = new List<UserOrderViewModel>();
 
                 foreach (Order order in _context.Orders.ToList())
                 {
-                    OrderViewModel orderViewModel = new OrderViewModel
+                    UserOrderViewModel userOrderViewModel = new UserOrderViewModel
                     {
                         CustomerId = order.CustomerId,
                         OrderId = order.OrderId,
                         timeDate = order.timeDate,
                         Total = order.Total,
                     };
-                    orders.Add(orderViewModel);
+                    orders.Add(userOrderViewModel);
                 }
 
                 UserViewModel userViewModel = new UserViewModel()

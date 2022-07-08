@@ -23,7 +23,7 @@ namespace ElektronAPI.Controllers
             {
                 return BadRequest();
             }
-            MailMessage mail = new MailMessage("Elektron.Lexicon@outlook.com", "Elektron.Lexicon@outlook.com", createMailViewModel.Subject, createMailViewModel.Subject);
+            MailMessage mail = new MailMessage("Elektron.Lexicon@outlook.com", "Elektron.Lexicon@outlook.com", createMailViewModel.Subject, createMailViewModel.Body);
             using var smtp = new SmtpClient("smtp-mail.outlook.com");
             smtp.Port = 587;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;

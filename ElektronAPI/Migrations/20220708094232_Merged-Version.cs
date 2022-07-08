@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ElektronAPI.Migrations
 {
-    public partial class PictureUpdate : Migration
+    public partial class MergedVersion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -272,14 +272,14 @@ namespace ElektronAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "824dcf4c-5cc1-43f0-b5a2-b08a1e3b7ae3", "5538ad2c-c1cd-48e7-badd-e8dd846956ea", "Admin", "ADMIN" },
-                    { "857674f1-1857-4cb6-a4d2-8856df3ec77d", "3329520f-4ea0-4632-8c56-6e9fca83b02e", "User", "USER" }
+                    { "53921a65-6daf-42df-95f2-1757982e4c81", "714aebf0-06a7-44eb-ade9-f43c6fd332c8", "User", "USER" },
+                    { "de0b247f-1641-4e33-a432-8db635352846", "ea3c7802-4657-4fd6-88c5-4f3a64c84af7", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1a4746ba-f275-4764-9687-41871ace024f", 0, "ce49932b-eb22-4a14-99be-c2ae18b516d8", "admin@admin.com", false, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEJbUhEgHKoBnngKsiLxPsohtfo74rNelonDk30swzz9EkETMf0/Rq93R8E3dRPBH3w==", null, false, "fe8f9ba4-2f3c-47fc-98b3-b29a75402c83", false, "admin@admin.com" });
+                values: new object[] { "1e68f8bf-217a-403f-92d1-2e21811041b6", 0, "e83276b8-48a4-4d3d-88aa-9ddad68ad782", "admin@admin.com", false, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEKLQCrMaZxTeOuT9gCKxC7D4ljjUHQ9VGvLNObABxYLJRt1XrYmeSJR2ouoK9WK8vA==", null, false, "cbb0e1cf-1a33-44e1-b737-8549e74a468d", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Pictures",
@@ -294,7 +294,7 @@ namespace ElektronAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "824dcf4c-5cc1-43f0-b5a2-b08a1e3b7ae3", "1a4746ba-f275-4764-9687-41871ace024f" });
+                values: new object[] { "de0b247f-1641-4e33-a432-8db635352846", "1e68f8bf-217a-403f-92d1-2e21811041b6" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -304,7 +304,7 @@ namespace ElektronAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "OrderId", "CustomerId", "Total", "timeDate" },
-                values: new object[] { 1, "1a4746ba-f275-4764-9687-41871ace024f", 600, new DateTime(2022, 7, 7, 11, 0, 2, 252, DateTimeKind.Local).AddTicks(3289) });
+                values: new object[] { 1, "1e68f8bf-217a-403f-92d1-2e21811041b6", 600, new DateTime(2022, 7, 8, 11, 42, 31, 734, DateTimeKind.Local).AddTicks(8003) });
 
             migrationBuilder.InsertData(
                 table: "Products",

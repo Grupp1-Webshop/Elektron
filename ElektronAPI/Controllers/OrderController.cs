@@ -35,7 +35,7 @@ namespace ElektronAPI.Controllers
 
 
             List<OrderViewModel> orderViewModelList = new List<OrderViewModel>();
-            foreach (Order order in _context.Orders)
+            foreach (Order order in _context.Orders.Include(e => e.OrderProducts))
             {
 
                 OrderViewModel orderViewModel = new OrderViewModel()
@@ -46,12 +46,10 @@ namespace ElektronAPI.Controllers
                     Total = order.Total,
                     timeDate = order.timeDate
 
-                };
-
-        //Får inte detta att funka       
+                }; 
                 orderViewModel.OrderProducts = new List<OrderProductViewModel>();
-                 foreach (OrderProduct orderproduct in order.OrderProducts)
-                 {
+                foreach (OrderProduct orderproduct in order.OrderProducts)
+                {
                      OrderProductViewModel orderProductViewModel = new OrderProductViewModel()
                      {
                          ProductId = orderproduct.ProductId,
@@ -59,22 +57,10 @@ namespace ElektronAPI.Controllers
                          Price = orderproduct.Price,
                          Quantity = orderproduct.Quantity
                      };
-                     orderViewModel.OrderProducts.Add(orderProductViewModel); //Fel här oxå
-                 }
-                 orderViewModelList.Add(orderViewModel);
+                     orderViewModel.OrderProducts.Add(orderProductViewModel); 
+                }
+                orderViewModelList.Add(orderViewModel);
 
-        //Den här funkar ej heller
-                /*
-                OrderProduct orderProduct = order.OrderProduct;
-                orderViewModel.OrderProduct = new OrderProductViewModel()
-                {
-                    ProductId = orderproduct.ProductId,
-                    ProductName = orderproduct.ProductName,
-                    Price = orderproduct.Price,
-                    Quantity = orderproduct.Quantity
-                };
-                orderViewModelsList.Add(orderProductViewModel);
-                */
             }
 
             return Json(orderViewModelList);

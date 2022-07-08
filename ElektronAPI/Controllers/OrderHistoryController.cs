@@ -35,7 +35,7 @@ namespace ElektronAPI.Controllers
             }
 
             OrderHistoryModel orderHistory = new OrderHistoryModel();
-            orderHistory.historyOrders = new List<OrderViewModel>();
+            orderHistory.historyOrders = new List<OrderViewModel> ();
 
             foreach (Order order in _context.Orders.ToList().Where(c => c.CustomerId == user.Id))
             {

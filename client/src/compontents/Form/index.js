@@ -14,7 +14,8 @@ export default function Form({ children , ...restProps}){
 Form.Input = function FormInput({ children, ...restProps}){
     
     return (
-        <><Label for={restProps.name}>{restProps.label}</Label><Input id={restProps.name} name={restProps.name}></Input></>
+        <><Label for={restProps.name}>{restProps.label}</Label>
+        <Input type={restProps.type === "password" ? ('password')  : ('text')} id={restProps.name} name={restProps.name}></Input></>
     )
 }
 Form.Button = function FormButton({ children}){

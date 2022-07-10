@@ -10,3 +10,4 @@ export { Product } from './Product';
 export { Profile } from './Profile';
 export { Register } from './Register';
 export { RegisterComplete } from './RegisterComplete';
+export { Logout } from './Logout';

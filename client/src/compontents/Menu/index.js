@@ -1,9 +1,11 @@
 import {
     Container,
     List,
-    Item
+    Item,
+    Link,
+    Dropdown,
+    DropdownList
 } from './style/Menu'
-import { Link } from "react-router-dom";
 export default function Menu({ children }){
     return (
         <Container>{children}</Container>
@@ -16,6 +18,11 @@ Menu.List = function menuList({ children }){
 }
 Menu.Item = function menuItem({ children, ...restProps}){
     return (
-        <Item><Link {...restProps} >{children}</Link></Item>
+        <Item><Link className='link' {...restProps} >{children}</Link></Item>
+    )
+}
+Menu.DropdownList = function menuDropdownList({ children, ...restProps}){
+    return (
+        <DropdownList><Item>{restProps.label}</Item><Dropdown>{children}</Dropdown></DropdownList>
     )
 }

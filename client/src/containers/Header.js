@@ -1,17 +1,56 @@
-import { Menu, Logotype, Actionbar, Icon } from "../compontents"
-import { Link } from "react-router-dom"
+import { Menu, Logotype, Icon } from "../compontents"
+import { useEffect, useState, useContext, useRef } from "react";
+import { UseCategories } from "../Hooks/UseCategories";
+import { UseCart } from "../Hooks/UseCart";
+import CartContext from "../Context/CartContext";
+import AuthContext from "../Context/AuthContext";
+import Cart from "../img/icons/cart.svg"
+import login from "../img/icons/login.svg"
+
+
 export function Header(){
+    const {getCategories, categories} = UseCategories();
+    const {GetTotal} = UseCart();
+    const [total, setTotal] = useState(0)
+    useEffect(() => {
+        getCategories()
+    }, []);
+    const {cartAmount} = useContext(CartContext)
+    const {user} = useContext(AuthContext)
     return <header>
+        <Logotype>
+            <Logotype.Img></Logotype.Img>
+        </Logotype>
+        <div className="menu">
         <Menu>
             <Menu.List>
-               <Menu.Item to="/">Statsida</Menu.Item>
+               <Menu.Item white to="/">Statsida</Menu.Item>
+               {
+                categories.map(category =>{
+                    return <Menu.Item white to={`category/${category.categoryId}`}>{category.name}</Menu.Item>
+                })
+               }
             </Menu.List>
         </Menu>
+        </div>
+        <div className="actionbar">
         <Menu>
             <Menu.List>
-                <Menu.Item to="login">Logga in<Icon src="img/icons/login.svg"></Icon></Menu.Item>
-                <Menu.Item to="checkout"><Icon src="img/icons/cart.svg"></Icon></Menu.Item>
+                {
+                    user !== null ? (
+                        <Menu.DropdownList label={<>
+                            {user.userName}<Icon src={login}></Icon>
+                        </>}>
+                            <Menu.Item white to="logout">Logga ut</Menu.Item>
+                        </Menu.DropdownList>
+                    ): (
+                        <Menu.Item white to="login">Logga in<Icon src={login}></Icon></Menu.Item>
+                    )
+                }
+                
+                <Menu.Item to="checkout"><Icon src={Cart}></Icon>{cartAmount}</Menu.Item>
             </Menu.List>
         </Menu>
+        </div>
     </header>
 }

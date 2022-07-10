@@ -3,6 +3,7 @@ using ElektronAPI.Models.Identity;
 using ElektronAPI.Models.Login;
 using ElektronAPI.Models.Orders;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace ElektronAPI.Controllers
 {
+    [EnableCors("Api")]
     public class RegisterController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

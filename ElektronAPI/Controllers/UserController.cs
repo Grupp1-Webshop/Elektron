@@ -22,7 +22,6 @@ namespace ElektronAPI.Controllers
             _userManager = userManager;
             _context = context;
         }
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> index()
         {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ElektronAPI.Controllers
 {
-    [EnableCors("MyPolicy")]
+    [EnableCors("Api")]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : Controller
@@ -55,7 +55,40 @@ namespace ElektronAPI.Controllers
             return Json(productViewModelsList);
         }
 
-        
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<IEnumerable<Product>>> getProduct(int id)
+        {
+            if (_context.Products == null)
+            {
+                return NotFound();
+            }
+            Product product = await _context.Products.Include(e => e.Category)
+                .Include(e => e.Picture)
+                .FirstOrDefaultAsync(e => e.ProductId == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+             ProductViewModel productViewModel = new ProductViewModel()
+             {
+                ProductId = product.ProductId,
+                Name = product.Name,
+                ShortDescription = product.ShortDescription,
+                Description = product.Description,
+                Price = product.Price,
+                Picture = product.Picture,
+             };
+             Category category = product.Category;
+             productViewModel.Category = new CategoryViewModel()
+             {
+                CategoryId = category.CategoryId,
+                Name = category.Name,
+                Picture = category.Picture,
+             };
+
+             return Json(productViewModel);
+        }
         // POST: api/product
         [Authorize(Roles = "Admin")]
         [HttpPost]

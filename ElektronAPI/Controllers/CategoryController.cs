@@ -52,6 +52,7 @@ namespace ElektronAPI.Controllers
                         ShortDescription = product.ShortDescription,
                         Description = product.Description,
                         Picture = product.Picture,
+                        Price = product.Price
                     };
                     categoryViewModel.Products.Add(productViewModel);
                 }
@@ -60,7 +61,47 @@ namespace ElektronAPI.Controllers
             
             return Json(categoryViewModelList);
         }
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategory(int id)
+        {
 
+            if (_context.Categories == null)
+            {
+                return NotFound();
+            }
+            Category category = await _context.Categories.Include(e => e.Products)
+                .Include(e => e.Picture)
+                .FirstOrDefaultAsync(e => e.CategoryId == id);
+            if(category == null)
+            {
+                return NotFound();
+            }
+
+            CategoryViewModel categoryViewModel = new CategoryViewModel()
+            {
+                    CategoryId = category.CategoryId,
+                    Name = category.Name,
+                    Picture = category.Picture,
+
+            };
+            categoryViewModel.Products = new List<ProductViewModel>();
+            foreach (Product product in category.Products)
+            {
+                ProductViewModel productViewModel = new ProductViewModel()
+                {
+                    ProductId = product.ProductId,
+                    Name = product.Name,
+                    ShortDescription = product.ShortDescription,
+                    Description = product.Description,
+                    Picture = product.Picture,
+                    Price= product.Price
+                };
+                    categoryViewModel.Products.Add(productViewModel);
+             }
+            
+
+            return Json(categoryViewModel);
+        }
         [Authorize(Roles = "Admin")]
         // POST: api/categories
         [HttpPost]

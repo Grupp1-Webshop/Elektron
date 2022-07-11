@@ -14,10 +14,11 @@ export const Dropdown = styled.ul`
     display:none;
     position:absolute;
     background:#2e3433;
-    bottom:calc(-100%);
+    top:100%;
     width:100%;
 `
 export const DropdownList = styled.ul`
+    
     display:flex;
     margin: 0px;
     padding:0px;

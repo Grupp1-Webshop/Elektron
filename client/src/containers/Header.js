@@ -39,7 +39,9 @@ export function Header(){
                         <Menu.DropdownList label={<>
                             {user.userName}<Icon src={login}></Icon>
                         </>}>
+                            <Menu.Item white to="change">Change password</Menu.Item>
                             <Menu.Item white to="logout">Logga ut</Menu.Item>
+                            
                         </Menu.DropdownList>
                     ): (
                         <Menu.Item white to="login">Logga in<Icon src={login}></Icon></Menu.Item>

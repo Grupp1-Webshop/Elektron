@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -27,7 +28,6 @@ namespace ElektronAPI.Controllers
 
         [Authorize]
         [HttpGet]
-
         public async Task<ActionResult<IEnumerable<Order>>> Index()
         {
 
@@ -55,8 +55,10 @@ namespace ElektronAPI.Controllers
                 {
                      OrderProductViewModel orderProductViewModel = new OrderProductViewModel()
                      {
+                         OrderProductId = orderproduct.ProductId,
                          ProductId = orderproduct.ProductId,
                          ProductName = orderproduct.ProductName,
+                         OrderId = orderproduct.OrderId,
                          Price = orderproduct.Price,
                          Quantity = orderproduct.Quantity
                      };
@@ -69,9 +71,8 @@ namespace ElektronAPI.Controllers
             return Json(orderViewModelList);
 
         }
-
-        [Authorize]
         // POST: api/orders
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<IEnumerable<Order>>> Index(CreateOrderViewModel createOrderViewModel)
         {
@@ -81,11 +82,9 @@ namespace ElektronAPI.Controllers
             }
             Order order = new Order()
             {
-                Customer = createOrderViewModel.Customer,
                 CustomerId = createOrderViewModel.CustomerId,
-                OrderProducts = createOrderViewModel.OrderProducts,
                 Total = createOrderViewModel.Total,
-                timeDate = createOrderViewModel.timeDate
+                timeDate = DateTime.Now
             };
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
@@ -109,11 +108,8 @@ namespace ElektronAPI.Controllers
                 return NotFound();
             }
 
-            order.Customer = createOrderViewModel.Customer;
             order.CustomerId = createOrderViewModel.CustomerId;
-            order.OrderProducts = createOrderViewModel.OrderProducts;
             order.Total = createOrderViewModel.Total;
-            order.timeDate = createOrderViewModel.timeDate;
             _context.Orders.Update(order);
             await _context.SaveChangesAsync();
 

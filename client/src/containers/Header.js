@@ -10,8 +10,6 @@ import login from "../img/icons/login.svg"
 
 export function Header(){
     const {getCategories, categories} = UseCategories();
-    const {GetTotal} = UseCart();
-    const [total, setTotal] = useState(0)
     useEffect(() => {
         getCategories()
     }, []);
@@ -24,7 +22,7 @@ export function Header(){
         <div className="menu">
         <Menu>
             <Menu.List>
-               <Menu.Item white to="/">Statsida</Menu.Item>
+               <Menu.Item white to="/">Startsida</Menu.Item>
                {
                 categories.map(category =>{
                     return <Menu.Item white to={`category/${category.categoryId}`}>{category.name}</Menu.Item>

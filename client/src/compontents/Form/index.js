@@ -15,7 +15,7 @@ Form.Input = function FormInput({ children, ...restProps}){
     
     return (
         <><Label for={restProps.name}>{restProps.label}</Label>
-        <Input type={restProps.type === "password" ? ('password')  : ('text')} id={restProps.name} name={restProps.name}></Input></>
+        <Input onChange={restProps.onChange} type={restProps.type === "password" ? ('password')  : ( restProps.type === "file" ? ("file") : ("text"))} id={restProps.name} name={restProps.name}></Input></>
     )
 }
 Form.Button = function FormButton({ children}){

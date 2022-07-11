@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { AccountDetails, Category, ChangePassword, Checkout, Index, Login, Logout, Order, OrderHistory, Product, Profile, Register, RegisterComplete } from './pages/Pages';
+import { AdminPictures, AdminCategories, AdminProducts, AccountDetails, Category, ChangePassword, Checkout, Index, Login, Logout, Order, OrderHistory, Product, Profile, Register, RegisterComplete } from './pages/Pages';
 import { Header } from './containers/Header'
 import { Footer } from './containers/Footer'
 import { useContext } from "react";
@@ -23,6 +23,9 @@ function App() {
             <Route path="/change" element={<ChangePassword/>} />
             <Route path="category/:id" element={<Category />} />
             <Route path="product/:id" element={<Product />} />
+            <Route path="admin/pictures" element={<AdminPictures/>} />
+            <Route path="admin/products" element={<AdminCategories/>} />
+            <Route path="admin/categories" element={<AdminProducts/>} />
           </Routes>
         <Footer></Footer>
       </AuthProvider>

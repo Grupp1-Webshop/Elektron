@@ -15,7 +15,7 @@ export const Dropdown = styled.ul`
     position:absolute;
     background:#2e3433;
     top:100%;
-    width:100%;
+    padding:0px;
 `
 export const DropdownList = styled.ul`
     
@@ -33,6 +33,7 @@ export const DropdownList = styled.ul`
 `
 export const Item = styled.li`
     margin-left: 2rem;
+    margin-right: 2rem;
     display:flex;
 `
 export const Link = styled(reactLink)`

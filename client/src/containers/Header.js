@@ -36,13 +36,24 @@ export function Header(){
             <Menu.List>
                 {
                     user !== null ? (
-                        <Menu.DropdownList label={<>
-                            {user.userName}<Icon src={login}></Icon>
-                        </>}>
-                            <Menu.Item white to="change">Change password</Menu.Item>
-                            <Menu.Item white to="logout">Logga ut</Menu.Item>
-                            
-                        </Menu.DropdownList>
+                        <>
+                            {
+                                user.userRole.includes("Admin") ? (
+                                    <Menu.DropdownList label="admin">
+                                        <Menu.Item white to="admin/products">Products</Menu.Item>
+                                        <Menu.Item white to="admin/categories">Categories</Menu.Item>
+                                        <Menu.Item white to="admin/pictures">Pictures</Menu.Item>
+                                    </Menu.DropdownList>
+                                ) : ('')
+                            }
+                            <Menu.DropdownList label={<>
+                                {user.userName}<Icon src={login}></Icon>
+                            </>}>
+                                <Menu.Item white to="change">Change password</Menu.Item>
+                                <Menu.Item white to="logout">Logga ut</Menu.Item>
+                                
+                            </Menu.DropdownList>
+                        </>
                     ): (
                         <Menu.Item white to="login">Logga in<Icon src={login}></Icon></Menu.Item>
                     )

@@ -4,7 +4,8 @@ import {
     Title,
     Description,
     Price,
-    Link
+    Link,
+    Delete
 } from './style/SmallThumb'
 export default function SmallThumb({ children }){
     return (
@@ -24,6 +25,11 @@ SmallThumb.Title = function SmallThumbTitle({ children, ...restProps}){
 SmallThumb.Description = function SmallThumbDescription({ children, ...restProps}){
     return (
         <Description>{children}</Description>
+    )
+}
+SmallThumb.Delete = function SmallThumbDelete({ children, ...restProps}){
+    return (
+        <Delete {...restProps}>{children}</Delete>
     )
 }
 SmallThumb.Price = function SmallThumbPrice({ children}){

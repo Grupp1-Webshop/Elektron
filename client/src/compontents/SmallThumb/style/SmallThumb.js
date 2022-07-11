@@ -13,3 +13,14 @@ export const Price = styled.p`
 `
 export const Link = styled(reactLink)`
 `
+export const Delete = styled.button`
+    background:#db5a6d;
+    padding:0.5rem 1rem;
+    text-align:center;
+    font-weight:bold;
+    color:#fff;
+    text-decoration:none;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+`

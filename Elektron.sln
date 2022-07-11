@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElektronAPI", "ElektronAPI\
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Client", "Client\Client.esproj", "{686FD5E6-1AC9-471F-9F75-61C2BB33B6E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guessing Game", "..\Guessing Game\Guessing Game\Guessing Game.csproj", "{87F94619-3F2D-4057-9F3C-4706CA4DF6C1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,10 +23,6 @@ Global
 		{686FD5E6-1AC9-471F-9F75-61C2BB33B6E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{686FD5E6-1AC9-471F-9F75-61C2BB33B6E4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{686FD5E6-1AC9-471F-9F75-61C2BB33B6E4}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{87F94619-3F2D-4057-9F3C-4706CA4DF6C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{87F94619-3F2D-4057-9F3C-4706CA4DF6C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{87F94619-3F2D-4057-9F3C-4706CA4DF6C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{87F94619-3F2D-4057-9F3C-4706CA4DF6C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

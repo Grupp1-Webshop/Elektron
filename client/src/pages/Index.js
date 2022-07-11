@@ -1,4 +1,9 @@
-export function Index(){
-    return <p>index</p>
-    
+import { Contact } from "../containers/Contact";
+
+export function Index() {
+  return (
+    <>
+      <Contact />
+    </>
+  );
 }

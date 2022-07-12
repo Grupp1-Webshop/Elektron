@@ -47,3 +47,17 @@ export const Picker = styled.div`
 export const Selected = styled.div`
     border:0.5rem solid green;
 `
+export const Select = styled.select`
+    width:100%;
+    padding:0.8rem;
+    border-radius:8px;
+    border:1px solid black;
+    margin-top:0.5rem;
+    margin-bottom:1rem;
+`
+export const Option  = styled.option`
+    width:100%;
+    padding:0.8rem;
+    margin-top:0.5rem;
+    margin-bottom:1rem;
+`

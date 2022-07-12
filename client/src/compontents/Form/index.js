@@ -5,7 +5,9 @@ import {
     Button,
     Link,
     Picker,
-    Selected
+    Selected,
+    Select,
+    Option
 } from './style/Form'
 export default function Form({ children , ...restProps}){
     return (
@@ -45,5 +47,15 @@ Form.PicturePicker = function FormPicturePicker({ children, ...restProps}){
 Form.Selected = function FormSelected({ children, ...restProps}){
     return (
         <Selected {...restProps}>{children}</Selected>
+    )
+}
+Form.Select = function FormSelected({ children, ...restProps}){
+    return (
+        <Select {...restProps}>{children}</Select>
+    )
+}
+Form.Option  = function FormOption({ children, ...restProps}){
+    return (
+        <Option {...restProps}>{children}</Option>
     )
 }

@@ -6,6 +6,7 @@ export function AdminPictures(){
     useEffect(() => {
         getPictures()
     }, [])
+    
     const [file, setFile] = useState([]);
     function fileChangeHandler(event){
         setFile(event.target.files[0])

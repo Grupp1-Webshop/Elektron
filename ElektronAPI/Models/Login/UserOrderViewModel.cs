@@ -13,5 +13,6 @@ namespace ElektronAPI.Models.Login
         public string CustomerId { get; set; }
         public int Total { get; set; }
         public DateTime timeDate { get; set; }
+
     }
 }

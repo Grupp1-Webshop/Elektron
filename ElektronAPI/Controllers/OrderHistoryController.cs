@@ -1,17 +1,23 @@
 ﻿using ElektronAPI.Data;
 using ElektronAPI.Models.Identity;
 using ElektronAPI.Models.Login;
+using ElektronAPI.Models.OrderProducts;
 using ElektronAPI.Models.Orders;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ElektronAPI.Controllers
 {
-    
+    [Authorize]
+    [EnableCors("Api")]
+    [ApiController]
+    [Route("api/[controller]")]
     public class OrderHistoryController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,8 +28,8 @@ namespace ElektronAPI.Controllers
             _userManager = userManager;
         }
 
-        [Authorize]
-        [HttpPost("api/OrderHistory/{userId}")]
+        
+        [HttpGet("{userId}")]
         public async Task<ActionResult<OrderHistoryModel>> GetUserOrderHistory(string userId)
         {
             //search for user
@@ -37,7 +43,7 @@ namespace ElektronAPI.Controllers
             OrderHistoryModel orderHistory = new OrderHistoryModel();
             orderHistory.historyOrders = new List<OrderViewModel> ();
 
-            foreach (Order order in _context.Orders.ToList().Where(c => c.CustomerId == user.Id))
+            foreach (Order order in _context.Orders.Include(e => e.OrderProducts).Where(e => e.CustomerId == user.Id))
             {
                 OrderViewModel orderViewModel = new OrderViewModel()
                 {
@@ -46,6 +52,18 @@ namespace ElektronAPI.Controllers
                     timeDate = order.timeDate,
                     Total = order.Total,
                 };
+                orderViewModel.OrderProducts = new List<OrderProductViewModel>();
+                foreach(OrderProduct orderProduct in order.OrderProducts)
+                {
+                    OrderProductViewModel orderProductViewModel = new OrderProductViewModel()
+                    {
+                        ProductId = orderProduct.ProductId,
+                        ProductName = orderProduct.ProductName,
+                        Price = orderProduct.Price,
+                        Quantity = orderProduct.Quantity
+                    };
+                    orderViewModel.OrderProducts.Add(orderProductViewModel);
+                }
                 orderHistory.historyOrders.Add(orderViewModel);
             }
 

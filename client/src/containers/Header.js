@@ -50,6 +50,7 @@ export function Header(){
                             <Menu.DropdownList label={<>
                                 {user.userName}<Icon src={login}></Icon>
                             </>}>
+                                <Menu.Item white to="order">Order</Menu.Item>
                                 <Menu.Item white to="change">Change password</Menu.Item>
                                 <Menu.Item white to="logout">Logga ut</Menu.Item>
                                 

@@ -14,3 +14,4 @@ export { Logout } from './Logout';
 export { AdminPictures } from './AdminPictures'
 export { AdminProducts } from './AdminProducts'
 export { AdminCategories } from './AdminCategories'
+export { AdminOrder } from './AdminOrder'

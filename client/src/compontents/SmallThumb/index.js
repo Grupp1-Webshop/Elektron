@@ -5,11 +5,12 @@ import {
     Description,
     Price,
     Link,
-    Delete
+    Delete,
+    Edit
 } from './style/SmallThumb'
-export default function SmallThumb({ children }){
+export default function SmallThumb({ children, ...restProps  }){
     return (
-        <Container>{children}</Container>
+        <Container {...restProps}>{children}</Container>
     )
 }
 SmallThumb.Picture = function SmallThumbPicture({ children, ...restProps }){
@@ -30,6 +31,11 @@ SmallThumb.Description = function SmallThumbDescription({ children, ...restProps
 SmallThumb.Delete = function SmallThumbDelete({ children, ...restProps}){
     return (
         <Delete {...restProps}>{children}</Delete>
+    )
+}
+SmallThumb.Edit = function SmallThumbEdit({ children, ...restProps}){
+    return (
+        <Edit {...restProps}>{children}</Edit>
     )
 }
 SmallThumb.Price = function SmallThumbPrice({ children}){

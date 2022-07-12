@@ -3,7 +3,9 @@ import {
     Label,
     Input,
     Button,
-    Link
+    Link,
+    Picker,
+    Selected
 } from './style/Form'
 export default function Form({ children , ...restProps}){
     return (
@@ -14,8 +16,15 @@ export default function Form({ children , ...restProps}){
 Form.Input = function FormInput({ children, ...restProps}){
     
     return (
-        <><Label for={restProps.name}>{restProps.label}</Label>
-        <Input onChange={restProps.onChange} type={restProps.type === "password" ? ('password')  : ( restProps.type === "file" ? ("file") : ("text"))} id={restProps.name} name={restProps.name}></Input></>
+        <>
+        {restProps.type === "hidden" ? ('') : (<Label for={restProps.name}>{restProps.label}</Label>)}
+        <Input 
+            onChange={restProps.onChange} 
+            type={restProps.type === "password" ? ('password')  : ( restProps.type === "file" ? ("file") : (restProps.type === "hidden" ? ('hidden') : ('text')))} 
+            id={restProps.name}
+
+            value={restProps.value} 
+            name={restProps.name}></Input></>
     )
 }
 Form.Button = function FormButton({ children}){
@@ -26,5 +35,15 @@ Form.Button = function FormButton({ children}){
 Form.Link = function FormLink({ children, ...restProps}){
     return (
         <Link {...restProps}>{children}</Link>
+    )
+}
+Form.PicturePicker = function FormPicturePicker({ children, ...restProps}){
+    return (
+        <Picker {...restProps}>{children}</Picker>
+    )
+}
+Form.Selected = function FormSelected({ children, ...restProps}){
+    return (
+        <Selected {...restProps}>{children}</Selected>
     )
 }

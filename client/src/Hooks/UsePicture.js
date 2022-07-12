@@ -18,6 +18,7 @@ export function UsePictures() {
         .then(res =>{
                 
                 console.log(res)
+                getPictures();
         })
         .catch(error => {
             console.log(error)
@@ -27,6 +28,7 @@ export function UsePictures() {
         axios.delete(`http://localhost:5207/api/Pictures/${id}`,  { withCredentials: true } )
         .then(res =>{
              console.log(res)
+             getPictures();
         })
     }
     return {getPictures, addPictures, removePictures, pictures};

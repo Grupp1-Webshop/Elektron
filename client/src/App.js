@@ -24,8 +24,8 @@ function App() {
             <Route path="category/:id" element={<Category />} />
             <Route path="product/:id" element={<Product />} />
             <Route path="admin/pictures" element={<AdminPictures/>} />
-            <Route path="admin/products" element={<AdminCategories/>} />
-            <Route path="admin/categories" element={<AdminProducts/>} />
+            <Route path="admin/products" element={<AdminProducts/>} />
+            <Route path="admin/categories" element={<AdminCategories/>} />
           </Routes>
         <Footer></Footer>
       </AuthProvider>

@@ -1,5 +1,6 @@
 ﻿using ElektronAPI.Data;
 using ElektronAPI.Models.Categories;
+using ElektronAPI.Models.Pictures;
 using ElektronAPI.Models.Products;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
@@ -41,15 +42,34 @@ namespace ElektronAPI.Controllers
                     ShortDescription= product.ShortDescription,
                     Description = product.Description,
                     Price = product.Price,
-                    Picture = product.Picture,
+                };
+                productViewModel.Picture = new PictureViewModel()
+                {
+                    PictureId = product.Picture.PictureId,
+                    Uri = product.Picture.Uri,
+                    Alt = product.Picture.Alt
                 };
                 Category category = product.Category;
                 productViewModel.Category = new CategoryViewModel()
                 {
                     CategoryId = category.CategoryId,
                     Name = category.Name,
-                    Picture = category.Picture,
+                    
                 };
+                if(category.Picture != null)
+                {
+                    productViewModel.Category.Picture = new PictureViewModel()
+                    {
+                        PictureId = category.Picture.PictureId,
+                        Uri = category.Picture.Uri,
+                        Alt = category.Picture.Alt
+                    };
+                }
+                else
+                {
+                    productViewModel.Category.Picture = null;
+                }
+                
                 productViewModelsList.Add(productViewModel);
             }
 
@@ -78,17 +98,27 @@ namespace ElektronAPI.Controllers
                 ShortDescription = product.ShortDescription,
                 Description = product.Description,
                 Price = product.Price,
-                Picture = product.Picture,
+
              };
-             Category category = product.Category;
+            productViewModel.Picture = new PictureViewModel()
+            {
+                PictureId = product.Picture.PictureId,
+                Uri = product.Picture.Uri,
+                Alt = product.Picture.Alt
+            };
+            Category category = product.Category;
              productViewModel.Category = new CategoryViewModel()
              {
                 CategoryId = category.CategoryId,
                 Name = category.Name,
-                Picture = category.Picture,
              };
-
-             return Json(productViewModel);
+            productViewModel.Category.Picture = new PictureViewModel()
+            {
+                PictureId = category.Picture.PictureId,
+                Uri = category.Picture.Uri,
+                Alt = category.Picture.Alt
+            };
+            return Json(productViewModel);
         }
         // POST: api/product
         [Authorize(Roles = "Admin")]

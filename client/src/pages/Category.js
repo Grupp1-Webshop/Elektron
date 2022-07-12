@@ -11,7 +11,8 @@ export function Category(){
     const {getCategory, category} = UseCategory();
     useEffect(() => {
         getCategory(id)
-    }, []);
+        console.log(category)
+    }, [id]);
 
     return <Main>
         <Main.Title>{category.name}</Main.Title>

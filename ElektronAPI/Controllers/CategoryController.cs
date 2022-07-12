@@ -1,5 +1,6 @@
 ﻿using ElektronAPI.Data;
 using ElektronAPI.Models.Categories;
+using ElektronAPI.Models.Pictures;
 using ElektronAPI.Models.Products;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
@@ -32,15 +33,20 @@ namespace ElektronAPI.Controllers
                 return NotFound();
             }
             List<CategoryViewModel> categoryViewModelList = new List<CategoryViewModel>() ;
-            foreach (Category category in _context.Categories.Include(e => e.Picture).Include(e => e.Products))
+            foreach (Category category in _context.Categories.Include(e => e.Picture).Include(e => e.Products).ThenInclude(e => e.Picture))
             {
                 
                 CategoryViewModel categoryViewModel = new CategoryViewModel()
                 {
                     CategoryId = category.CategoryId,
                     Name = category.Name,
-                    Picture = category.Picture,
 
+                };
+                categoryViewModel.Picture = new PictureViewModel()
+                {
+                    PictureId = category.Picture.PictureId,
+                    Uri = category.Picture.Uri,
+                    Alt = category.Picture.Alt
                 };
                 categoryViewModel.Products = new List<ProductViewModel>();
                 foreach (Product product in category.Products)
@@ -51,8 +57,13 @@ namespace ElektronAPI.Controllers
                         Name = product.Name,
                         ShortDescription = product.ShortDescription,
                         Description = product.Description,
-                        Picture = product.Picture,
                         Price = product.Price
+                    };
+                    productViewModel.Picture = new PictureViewModel()
+                    {
+                        PictureId = category.Picture.PictureId,
+                        Uri = category.Picture.Uri,
+                        Alt = category.Picture.Alt
                     };
                     categoryViewModel.Products.Add(productViewModel);
                 }
@@ -69,7 +80,7 @@ namespace ElektronAPI.Controllers
             {
                 return NotFound();
             }
-            Category category = await _context.Categories.Include(e => e.Products)
+            Category category = await _context.Categories.Include(e => e.Products).ThenInclude(e => e.Picture)
                 .Include(e => e.Picture)
                 .FirstOrDefaultAsync(e => e.CategoryId == id);
             if(category == null)
@@ -81,8 +92,13 @@ namespace ElektronAPI.Controllers
             {
                     CategoryId = category.CategoryId,
                     Name = category.Name,
-                    Picture = category.Picture,
 
+            };
+            categoryViewModel.Picture = new PictureViewModel()
+            {
+                PictureId = category.Picture.PictureId,
+                Uri = category.Picture.Uri,
+                Alt = category.Picture.Alt
             };
             categoryViewModel.Products = new List<ProductViewModel>();
             foreach (Product product in category.Products)
@@ -93,10 +109,23 @@ namespace ElektronAPI.Controllers
                     Name = product.Name,
                     ShortDescription = product.ShortDescription,
                     Description = product.Description,
-                    Picture = product.Picture,
                     Price= product.Price
                 };
-                    categoryViewModel.Products.Add(productViewModel);
+                if(product.Picture != null)
+                {
+                    productViewModel.Picture = new PictureViewModel()
+                    {
+                        PictureId = product.Picture.PictureId,
+                        Uri = product.Picture.Uri,
+                        Alt = product.Picture.Alt
+                    };
+                }
+                else
+                {
+                    productViewModel.Picture = null;
+                }
+                
+                categoryViewModel.Products.Add(productViewModel);
              }
             
 

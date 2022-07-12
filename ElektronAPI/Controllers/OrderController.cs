@@ -1,5 +1,6 @@
 ﻿using ElektronAPI.Data;
 using ElektronAPI.Models.Categories;
+using ElektronAPI.Models.Login;
 using ElektronAPI.Models.OrderProducts;
 using ElektronAPI.Models.Orders;
 using ElektronAPI.Models.Products;
@@ -38,18 +39,22 @@ namespace ElektronAPI.Controllers
 
 
             List<OrderViewModel> orderViewModelList = new List<OrderViewModel>();
-            foreach (Order order in _context.Orders.Include(e => e.OrderProducts))
+            foreach (Order order in _context.Orders.Include(e => e.OrderProducts).Include(e => e.Customer))
             {
 
                 OrderViewModel orderViewModel = new OrderViewModel()
                 {
                     OrderId = order.OrderId,
-                    Customer = order.Customer,
                     CustomerId = order.CustomerId,
                     Total = order.Total,
                     timeDate = order.timeDate
 
-                }; 
+                };
+                orderViewModel.Customer = new UserViewModel()
+                {
+                    Name = order.Customer.UserName,
+                    Email = order.Customer.Email,
+                };
                 orderViewModel.OrderProducts = new List<OrderProductViewModel>();
                 foreach (OrderProduct orderproduct in order.OrderProducts)
                 {

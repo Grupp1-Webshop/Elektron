@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { AdminPictures, AdminCategories, AdminProducts, AccountDetails, Category, ChangePassword, Checkout, Index, Login, Logout, Order, OrderHistory, Product, Profile, Register, RegisterComplete } from './pages/Pages';
+import {AdminOrder, AdminPictures, AdminCategories, AdminProducts, AccountDetails, Category, ChangePassword, Checkout, Index, Login, Logout, Order, OrderHistory, Product, Profile, Register, RegisterComplete } from './pages/Pages';
 import { Header } from './containers/Header'
 import { Footer } from './containers/Footer'
 import { useContext } from "react";
@@ -26,6 +26,7 @@ function App() {
             <Route path="admin/pictures" element={<AdminPictures/>} />
             <Route path="admin/products" element={<AdminProducts/>} />
             <Route path="admin/categories" element={<AdminCategories/>} />
+            <Route path="admin/orders" element={<AdminOrder/>} />
           </Routes>
         <Footer></Footer>
       </AuthProvider>

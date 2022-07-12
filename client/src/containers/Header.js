@@ -43,6 +43,7 @@ export function Header(){
                                         <Menu.Item white to="admin/products">Products</Menu.Item>
                                         <Menu.Item white to="admin/categories">Categories</Menu.Item>
                                         <Menu.Item white to="admin/pictures">Pictures</Menu.Item>
+                                        <Menu.Item white to="admin/orders">Orders</Menu.Item>
                                     </Menu.DropdownList>
                                 ) : ('')
                             }

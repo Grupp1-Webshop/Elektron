@@ -4,7 +4,7 @@ export function UseOrder() {
     const [orders, setOrders] = useState([]);
     const [order, setOrder] = useState(null);
     function getOrders(){
-        axios.get('http://localhost:5207/api/Order')
+        axios.get('http://localhost:5207/api/Order',  { withCredentials: true })
             .then(response => setOrders(response.data))
     }
     function addOrder(id, total){

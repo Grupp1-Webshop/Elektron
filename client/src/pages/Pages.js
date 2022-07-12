@@ -11,3 +11,4 @@ export { Profile } from './Profile';
 export { Register } from './Register';
 export { RegisterComplete } from './RegisterComplete';
 export { Logout } from './Logout';
+export { Categories} from './Categories';

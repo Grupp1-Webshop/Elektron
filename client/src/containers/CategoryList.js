@@ -3,7 +3,7 @@ export function CategoryList(props) {
     let categories = props.categories;
     return <>
         {
-            products.map(category => {
+            categories.map(category => {
                 return <BigThumb>
                     {
                         category.picture !== null ? (

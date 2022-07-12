@@ -38,4 +38,26 @@ export const Link = styled(reactLink)`
     text-decoration:none;
     font-size:18px;
 `
-
+export const Picker = styled.div`
+    width:100%;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap:2rem;
+`
+export const Selected = styled.div`
+    border:0.5rem solid green;
+`
+export const Select = styled.select`
+    width:100%;
+    padding:0.8rem;
+    border-radius:8px;
+    border:1px solid black;
+    margin-top:0.5rem;
+    margin-bottom:1rem;
+`
+export const Option  = styled.option`
+    width:100%;
+    padding:0.8rem;
+    margin-top:0.5rem;
+    margin-bottom:1rem;
+`

@@ -36,6 +36,7 @@ namespace ElektronAPI.Controllers
                 ProductViewModel productViewModel = new ProductViewModel()
                 {
                     ProductId = product.ProductId,
+                    CategoryId = product.CategoryId,
                     Name = product.Name,
                     ShortDescription= product.ShortDescription,
                     Description = product.Description,

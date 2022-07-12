@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ElektronAPI.Controllers
 {
-    
+    [EnableCors("Api")]
     [Route("api/[controller]")]
     [ApiController]
     public class PicturesController : Controller

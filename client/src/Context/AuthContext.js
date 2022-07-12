@@ -27,13 +27,24 @@ export function AuthProvider({children}){
         })
         
     }
+    const changePassword = (oldpassword, newpassword) => {
+        const fd = new FormData();
+        fd.append("oldPassword", oldpassword)
+        fd.append("password", newpassword)
+        const data = {
+            oldPassword : oldpassword,
+            password : newpassword
+        }
+        axios.put('http://localhost:5207/api/User', data, { withCredentials: true })
+        .then(response => console.log(response.data))
+    }
     const logout = () => {
         axios.post('http://localhost:5207/api/Logout',{}, { withCredentials: true })
         .then(response => {
             setUser(null)
         })
     }
-    return <AuthContext.Provider value={{user, login, logout}}>
+    return <AuthContext.Provider value={{user, login, logout, changePassword}}>
     {children}
     </AuthContext.Provider>
 }

@@ -12,6 +12,6 @@ namespace ElektronAPI.Models.Products
         public int Price { get; set; }
         public int CategoryId { get; set; }
         public CategoryViewModel? Category { get; set; }
-        public Picture Picture { get; set; }
+        public PictureViewModel Picture { get; set; }
     }
 }

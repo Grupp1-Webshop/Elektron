@@ -9,7 +9,7 @@ namespace ElektronAPI.Models.Categories
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public int? PictureId { get; set; }
-        public Picture Picture { get; internal set; }
+        public PictureViewModel Picture { get; internal set; }
         public List<ProductViewModel> Products { get; set; }
     }
 }

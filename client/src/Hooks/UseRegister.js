@@ -1,6 +1,8 @@
 import axios from "axios"
 import { useState, useEffect} from "react"
+import { useNavigate } from 'react-router-dom';
 export function UseRegister() {
+    const navigate = useNavigate();
     const [error, setError] = useState(null)
     const [responseError, setResponseError] = useState(null)
     useEffect(() => {
@@ -31,7 +33,12 @@ export function UseRegister() {
         fd.append("Username", username)
         fd.append("Password", password)
         axios.post('http://localhost:5207/api/Register', fd , { withCredentials: true } )
-            .then(response => console.log(response.data))
+            .then(response => {
+                console.log("redirect")
+                navigate('/login')
+                console.log(response.data)
+                
+            })
             .catch(response => {
                 let tempArray = []
                 const errorList = response.response.data.errors

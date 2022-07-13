@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { Main, SmallThumb, Panel, Form } from "../compontents"
 import { UseCategories } from "../Hooks/UseCategories"
 import { UsePictures } from "../Hooks/UsePicture";
 import { UseProduct } from "../Hooks/UseProduct";
+import AuthContext from "../Context/AuthContext";
+import {useNavigate} from 'react-router-dom';
 export function AdminProducts(){
     const {getCategories, categories} = UseCategories();
     const {getProducts,addProduct, editProduct, deleteProduct, product} = UseProduct()
@@ -15,6 +17,8 @@ export function AdminProducts(){
     const [price, setPrice] = useState("");
     const [category, setCategory] = useState(1);
     const {getPictures, pictures} = UsePictures();
+    const {user} = useContext(AuthContext)
+    const navigate = useNavigate();
     const handleChange = (event) => {
         if(event.target.name == "name"){
             setName(event.target.value);
@@ -57,10 +61,25 @@ export function AdminProducts(){
         setEditId(id)
     }
     useEffect(() =>{
+        
         getProducts()
         getPictures()
         getCategories()
     }, [])
+    let checked = false;
+    useEffect(() => {
+        
+        if(user != null){
+            if(!user.userRole.includes("Admin")){
+                navigate('/');
+            }
+            
+        }else if(checked){
+            navigate('/');
+        }
+        checked = true;
+        
+    }, [user])
     return <Main>
         <Main.Title>Products</Main.Title>
         <Main.Content>

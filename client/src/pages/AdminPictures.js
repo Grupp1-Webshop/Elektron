@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { Main, SmallThumb, Panel, Form } from "../compontents"
 import { UsePictures } from "../Hooks/UsePicture"
+import AuthContext from "../Context/AuthContext"
+import { useNavigate } from "react-router-dom"
 export function AdminPictures(){
     const {pictures, getPictures, addPictures, removePictures} = UsePictures()
+    const {user} = useContext(AuthContext)
+    const navigate = useNavigate();
     useEffect(() => {
         getPictures()
     }, [])
@@ -17,6 +21,20 @@ export function AdminPictures(){
         addPictures(alt, file)
         
     }
+    let checked = false;
+    useEffect(() => {
+        
+        if(user != null){
+            if(!user.userRole.includes("Admin")){
+                navigate('/');
+            }
+            
+        }else if(checked){
+            navigate('/');
+        }
+        checked = true;
+        
+    }, [user])
     return <Main>
         <Main.Title>Pictures</Main.Title>
         <Main.Content>

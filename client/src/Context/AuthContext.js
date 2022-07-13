@@ -4,6 +4,7 @@ const AuthContext = createContext();
 
 export function AuthProvider({children}){
     const [user, setUser] = useState(null)
+    const [error, setError] = useState(null)
     useEffect(() =>{
         axios.get('http://localhost:5207/api/User', { withCredentials: true })
         .then(response => {
@@ -19,11 +20,13 @@ export function AuthProvider({children}){
         .then(response => {
             axios.get('http://localhost:5207/api/User', { withCredentials: true })
             .then(response => {
+                setError(null)
                 setUser(response.data)
             })
         })
         .catch(error => {
             console.log(error)
+            setError("Lösenord eller användarnamn är ogitligt")
         })
         
     }
@@ -36,7 +39,13 @@ export function AuthProvider({children}){
             password : newpassword
         }
         axios.put('http://localhost:5207/api/User', data, { withCredentials: true })
-        .then(response => console.log(response.data))
+        .then(response => {
+            setError(null)
+            console.log(response.data)
+        })
+        .catch(error => {
+            setError("Lösenord eller nya lösenordet ogitligt")
+        })
     }
     const logout = () => {
         axios.post('http://localhost:5207/api/Logout',{}, { withCredentials: true })
@@ -44,7 +53,7 @@ export function AuthProvider({children}){
             setUser(null)
         })
     }
-    return <AuthContext.Provider value={{user, login, logout, changePassword}}>
+    return <AuthContext.Provider value={{error, user, login, logout, changePassword}}>
     {children}
     </AuthContext.Provider>
 }

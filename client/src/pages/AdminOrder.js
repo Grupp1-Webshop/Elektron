@@ -1,11 +1,29 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { Main, SmallThumb, Panel, Table } from "../compontents"
 import { UseOrder } from "../Hooks/UseOrder"
+import AuthContext from "../Context/AuthContext"
+import { useNavigate } from "react-router-dom"
 export function AdminOrder(){
+    const {user} = useContext(AuthContext)
+    const navigate = useNavigate();
     const {getOrders, orders} = UseOrder()
     useEffect(() =>{
         getOrders()
     },[])
+    let checked = false;
+    useEffect(() => {
+        
+        if(user != null){
+            if(!user.userRole.includes("Admin")){
+                navigate('/');
+            }
+            
+        }else if(checked){
+            navigate('/');
+        }
+        checked = true;
+        
+    }, [user])
     return <Main>
         <Main.Title>Orders</Main.Title>
         <Main.Content>

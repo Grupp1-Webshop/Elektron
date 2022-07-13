@@ -13,6 +13,7 @@ export const Picture = styled.img`
     width:500px;
     height:500px;
     grid-row:1/-1;
+    object-fit: cover;
 `
 export const Category = styled.span`
 `

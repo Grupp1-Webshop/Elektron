@@ -112,12 +112,21 @@ namespace ElektronAPI.Controllers
                 CategoryId = category.CategoryId,
                 Name = category.Name,
              };
-            productViewModel.Category.Picture = new PictureViewModel()
+            if(productViewModel.Category.Picture != null)
             {
-                PictureId = category.Picture.PictureId,
-                Uri = category.Picture.Uri,
-                Alt = category.Picture.Alt
-            };
+                productViewModel.Category.Picture = new PictureViewModel()
+                {
+                    PictureId = category.Picture.PictureId,
+                    Uri = category.Picture.Uri,
+                    Alt = category.Picture.Alt
+                };
+            }
+            else
+            {
+                
+                productViewModel.Category.Picture = null;
+            }
+            
             return Json(productViewModel);
         }
         // POST: api/product

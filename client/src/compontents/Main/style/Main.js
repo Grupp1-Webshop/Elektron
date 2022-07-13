@@ -10,4 +10,10 @@ export const Title = styled.h1`
 export const Content = styled.div`
     display:grid;
     grid-template-columns: repeat(6, 1fr);
+    grid-gap:2rem;
+`
+export const ThreeCol = styled.div`
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap:2rem;
 `

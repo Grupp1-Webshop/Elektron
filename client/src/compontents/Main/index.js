@@ -1,7 +1,8 @@
 import {
     Container,
     Title,
-    Content
+    Content,
+    ThreeCol
 } from './style/Main'
 export default function Main({ children }){
     return (
@@ -16,5 +17,10 @@ Main.Title = function MainTitle({ children }){
 Main.Content = function MainContent({ children }){
     return (
         <Content>{children}</Content>
+    )
+}
+Main.ThreeCol = function MainThreeCol({ children }){
+    return (
+        <ThreeCol>{children}</ThreeCol>
     )
 }

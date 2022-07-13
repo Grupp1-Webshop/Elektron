@@ -6,5 +6,9 @@ export function UseProduct() {
         axios.get(`http://localhost:5207/api/product/${id}`)
             .then(response => setProduct(response.data))
     }
-    return {getProduct, product};
+    function getProducts(){
+        axios.get(`http://localhost:5207/api/product`)
+            .then(response => setProduct(response.data))
+    }
+    return {getProduct, getProducts, product};
 }

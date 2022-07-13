@@ -6,6 +6,7 @@ import {
 import { Main } from "../compontents"
 import { ProductList } from "../containers/ProductList";
 import { UseCategory } from "../Hooks/UseCategory";
+
 export function Category(){
     let { id } = useParams();
     const {getCategory, category} = UseCategory();
@@ -17,7 +18,7 @@ export function Category(){
         <Main.Title>{category.name}</Main.Title>
         <Main.Content>
             {
-                category.products != undefined ? (
+                category.products !== undefined ? (
                     <ProductList products={category.products} max={0}/>
                 ) : ('')
             }

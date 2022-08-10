@@ -15,7 +15,7 @@ export function ProductList(props){
                     }
                     <SmallThumb.Title to={`/product/${product.productId}`}>{product.name}</SmallThumb.Title>
                     <SmallThumb.Description>{product.shortDescription}</SmallThumb.Description>
-                    <SmallThumb.Price>{product.price}</SmallThumb.Price>
+                    <SmallThumb.Price>{product.price} kr</SmallThumb.Price>
                 </SmallThumb>
             })
         }

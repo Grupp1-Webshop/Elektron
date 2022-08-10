@@ -75,12 +75,12 @@ export function Checkout(){
                     return <Table.Row>
                         <Table.Item>{item.amount}</Table.Item>
                         <Table.Item>{item.name}</Table.Item>
-                        <Table.Item>{item.price}</Table.Item>
+                        <Table.Item>{item.price} kr</Table.Item>
                     </Table.Row>;
                 })
             }
             <Table.Row>
-                <Table.Item>totalt : {total}</Table.Item>
+                <Table.Item>totalt : {total} kr</Table.Item>
             </Table.Row>
         </Table>
         {

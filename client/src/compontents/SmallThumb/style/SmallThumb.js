@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {Link as reactLink} from "react-router-dom";
 export const Container = styled.div`
-    
+    margin:0.5rem;
 `
 export const Picture = styled.img`
     width: 100%;
@@ -15,6 +15,8 @@ export const Description = styled.p`
 export const Price = styled.p`
 `
 export const Link = styled(reactLink)`
+    color:rgb(65,106,106);
+    text-decoration:none;
 `
 export const Delete = styled.button`
     background:#db5a6d;

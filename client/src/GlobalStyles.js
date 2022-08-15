@@ -19,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
   }
   .actionbar{
     display: flex;
-    grid-column:9/13;
+    grid-column:8/13;
     flex-direction: row-reverse;
   }
   .menu{

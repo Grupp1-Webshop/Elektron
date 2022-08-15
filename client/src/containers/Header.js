@@ -61,7 +61,7 @@ export function Header(){
                     )
                 }
                 
-                <Menu.Item to="checkout"><Icon src={Cart}></Icon>{cartAmount}</Menu.Item>
+                <Menu.Item to="checkout"><Icon src={Cart}></Icon><Menu.cartAmount>{cartAmount}</Menu.cartAmount></Menu.Item>
             </Menu.List>
         </Menu>
         </div>

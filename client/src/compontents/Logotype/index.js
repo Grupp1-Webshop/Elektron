@@ -3,7 +3,7 @@ import {
     Img
 } from './style/Logotype'
 import { Link } from "react-router-dom";
-import logo from "../../img/png/logo.png"
+import logo from "../../img/png/logo.svg"
 export default function Logotype({ children }){
     return (
         <Container>{children}</Container>

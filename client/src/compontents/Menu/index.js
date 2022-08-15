@@ -4,7 +4,9 @@ import {
     Item,
     Link,
     Dropdown,
-    DropdownList
+    DropdownList,
+    CartAmount,
+    Amount
 } from './style/Menu'
 export default function Menu({ children }){
     return (
@@ -24,5 +26,10 @@ Menu.Item = function menuItem({ children, ...restProps}){
 Menu.DropdownList = function menuDropdownList({ children, ...restProps}){
     return (
         <DropdownList><Item>{restProps.label}</Item><Dropdown>{children}</Dropdown></DropdownList>
+    )
+}
+Menu.cartAmount = function menuCartAmount({ children, ...restProps}){
+    return (
+        <CartAmount><Amount>{children}</Amount></CartAmount>
     )
 }

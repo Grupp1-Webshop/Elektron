@@ -4,12 +4,15 @@ export const Container = styled.div`
     background: #e7edec;
     padding:4rem;
     margin:8rem;
+   
 `
 export const Title = styled.h1`
     text-align:center;
 `
 export const Button = styled.button`
-margin:1rem;
+    
+    margin:1rem;
+    margin-top:4rem;
     padding:0.5rem 1rem;
     text-align:center;
     background:#4b9f9f;
@@ -18,6 +21,7 @@ margin:1rem;
     text-decoration:none;
     font-size:18px;
     border:none;
+    
 `
 export const Link = styled(reactLink)`
     width:150px;

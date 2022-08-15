@@ -3,6 +3,26 @@ import {Link as reactLink} from "react-router-dom";
 export const Container = styled.nav`
     
 `
+export const CartAmount = styled.div`
+    background:#000;
+    width:30px;
+    height:30px;
+    position:absolute;
+    border-radius:30%;
+    right:2.8rem;
+    top:1.4rem;
+
+`
+export const Amount = styled.a`
+    position:absolute;
+    top: 50%; right: 50%;
+    transform: translate(50%,-50%);
+    margin:0px;
+    padding:0px;
+    color:white;
+    font-weight:bold;
+
+`
 export const List = styled.ul`
     display:flex;
     margin: 0px;
@@ -29,6 +49,10 @@ export const DropdownList = styled.ul`
         & ul{
             display:block;
         }
+    }
+    & li {
+        display:flex;
+        align-items: center; /* align items horizontally, in this case */
     }
 `
 export const Item = styled.li`

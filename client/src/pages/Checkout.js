@@ -62,9 +62,9 @@ export function Checkout(){
         setItems([])
         setTotal(0)
     }
-    return <Panel>
+    return <Panel >
         <Panel.Title>Checkout</Panel.Title>
-        <Table>
+        <Table >
             <Table.Row>
                 <Table.Title>Quantity</Table.Title>
                 <Table.Title>Name</Table.Title>

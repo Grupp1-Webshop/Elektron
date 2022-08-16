@@ -6,7 +6,7 @@ import AuthContext from "../Context/AuthContext"
 import { UseOrder } from "../Hooks/UseOrder"
 export function Checkout(){
     const {user} = useContext(AuthContext)
-    const {cart, emptyCart} = useContext(CartContext)
+    const {cart, emptyCart, setAmount, removeItem} = useContext(CartContext)
     const {order, addOrder, addOrderProduct} = UseOrder()
     const {product, getProducts} = UseProduct()
     const [items , setItems] = useState([])
@@ -17,27 +17,27 @@ export function Checkout(){
             getProducts()
         }else{
             if(cart != null){
-
-            let price = 0
-            for (const [index, value] of Object.entries(cart)) {
-                const tempItems = items
-                const itemProduct = product.filter(e => e.productId == index);
-                console.log(itemProduct, value.amount);
-                price = price + (value.amount * itemProduct[0].price);
-                const entrie = {
-                    name : itemProduct[0].name,
-                    id : itemProduct[0].productId,
-                    price : (value.amount * itemProduct[0].price),
-                    amount : value.amount
-                }
-               
-                tempItems.push(entrie)
-                setItems(tempItems)
+                const tempItems = []
+                let price = 0
+                for (const [index, value] of Object.entries(cart)) {
+                    
+                    const itemProduct = product.filter(e => e.productId == index);
+                    price = price + (value.amount * itemProduct[0].price);
+                    const entrie = {
+                        name : itemProduct[0].name,
+                        id : itemProduct[0].productId,
+                        price : (value.amount * itemProduct[0].price),
+                        amount : value.amount,
+                        singlePrice : itemProduct[0].price
+                    }
                 
+                    tempItems.push(entrie)
+                    setItems(tempItems)
+                    
 
+                }
+                setTotal(price)
             }
-            setTotal(price)
-        }
             console.log(items)
         }
             
@@ -62,6 +62,33 @@ export function Checkout(){
         setItems([])
         setTotal(0)
     }
+    const ChangeHandler = (event) => {
+        console.log(event.target.name)
+        console.log(event.target.value)
+        const tempItems = items
+        console.log(tempItems)
+        var index = tempItems.map(e => e.id).indexOf(parseInt(event.target.name));
+        const singlePrice = tempItems[index].singlePrice
+        console.log(singlePrice)
+        tempItems[index].amount = parseInt(event.target.value)
+        tempItems[index].price = singlePrice * event.target.value
+        setAmount(event.target.name, event.target.value)
+        let price = 0
+        for(const item of tempItems){
+            price += item.price
+        }
+        setTotal(price)
+    }
+    const removeInCheckout = (id) => {
+        const tempItems = items
+        var index = tempItems.map(e => e.id).indexOf(parseInt(id));
+        tempItems.splice(index, 1);
+        let price = 0
+        for(const item of tempItems){
+            price += item.price
+        }
+        setTotal(price)
+    }
     return <Panel >
         <Panel.Title>Checkout</Panel.Title>
         <Table >
@@ -72,10 +99,15 @@ export function Checkout(){
             </Table.Row>
             {
                 items.map((item) => {
-                    return <Table.Row>
-                        <Table.Item>{item.amount}</Table.Item>
+                    return <Table.Row key={item.id}>
+                        <Table.Item>
+                            <Table.NumberChanger value={item.amount} onChange={ChangeHandler} name={item.id}> </Table.NumberChanger>
+                        </Table.Item>
                         <Table.Item>{item.name}</Table.Item>
                         <Table.Item>{item.price} kr</Table.Item>
+                        <Table.Item>
+                            <Table.Button onClick={() => {removeItem(parseInt(item.id)); removeInCheckout(parseInt(item.id))}}>Remove</Table.Button>
+                        </Table.Item>
                     </Table.Row>;
                 })
             }

@@ -26,8 +26,14 @@ export const Button = styled.button`
     border:none;
     border-radius:8px;
     font-size:18px;
+    margin-top:2rem;
 `
 export const Col = styled.div`
     display:grid;
     grid-template-rows:80px 50px 50px auto 50px;
+`
+export const NumberChanger = styled.input`
+    width:250px;
+    border-radius:8px;
+    padding:0.5rem;
 `

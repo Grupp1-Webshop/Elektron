@@ -6,8 +6,8 @@ import {
     Category,
     Price,
     Button,
-    Col
-
+    Col,
+    NumberChanger
 } from './style/FullProduct'
 export default function FullProduct({ children }){
     return (
@@ -47,5 +47,10 @@ FullProduct.Price = function FullProductPrice({ children }){
 FullProduct.Button = function FullProductPrice({ children, ...restProps }){
     return (
         <Button {...restProps}>{children}</Button>
+    )
+}
+FullProduct.NumberChanger = function FullProductNumberChanger({ children, ...restProps  }){
+    return (
+        <NumberChanger type="number" {...restProps} ></NumberChanger>
     )
 }

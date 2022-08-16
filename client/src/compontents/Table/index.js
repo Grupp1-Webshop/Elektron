@@ -2,7 +2,9 @@ import {
     Container,
     Row,
     Title,
-    Item
+    Item,
+    Button,
+    NumberChanger
 } from './style/Table'
 export default function Table({ children }){
     return (
@@ -22,5 +24,15 @@ Table.Title = function TableTitle({ children }){
 Table.Item = function TableItem({ children }){
     return (
         <Item>{children}</Item>
+    )
+}
+Table.Button = function TableButton({ children, ...restProps }){
+    return (
+        <Button {...restProps}>{children}</Button>
+    )
+}
+Table.NumberChanger = function TableNumberChanger({ children, ...restProps  }){
+    return (
+        <NumberChanger type="number" {...restProps} ></NumberChanger>
     )
 }

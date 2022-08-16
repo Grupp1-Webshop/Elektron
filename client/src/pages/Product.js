@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useContext} from "react";
+import { useEffect, useContext, useState} from "react";
 import {
     useParams
 } from "react-router-dom";
@@ -10,10 +10,16 @@ export function Product(){
     let { id } = useParams();
     const {getProduct, product} = UseProduct();
     const {cart, addToCart} = useContext(CartContext)
+    const [amount , setAmount] = useState(1)
     useEffect(() => {
         getProduct(id)
     }, []);
-    
+    const changeHandler = (event) =>{
+        if(event.target.value >= 1){
+            setAmount(event.target.value)
+        }
+        
+    }
     return <Main>
         <Main.Content>
             <FullProduct>
@@ -38,7 +44,8 @@ export function Product(){
                     
                     <FullProduct.Price>{product.price} kr</FullProduct.Price>
                     <FullProduct.Description>{product.description}</FullProduct.Description>
-                    <FullProduct.Button onClick={()=> addToCart(id)} >Lägg till</FullProduct.Button>
+                    <FullProduct.NumberChanger value={amount} onChange={changeHandler}></FullProduct.NumberChanger>
+                    <FullProduct.Button onClick={()=> addToCart(id, amount)} >Lägg till</FullProduct.Button>
                 </FullProduct.Col>
             </FullProduct>
         </Main.Content>

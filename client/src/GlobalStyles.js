@@ -7,6 +7,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+    
   }
   img {
     max-width:100%;
@@ -31,6 +32,10 @@ const GlobalStyles = createGlobalStyle`
     padding:2rem;
     align-items:center;
     background:#4b9f9f;
+    margin-top:8rem;
+  }
+  main{
+    min-height: 65vh;
   }
 `;
  

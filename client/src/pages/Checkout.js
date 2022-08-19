@@ -63,21 +63,24 @@ export function Checkout(){
         setTotal(0)
     }
     const ChangeHandler = (event) => {
-        console.log(event.target.name)
-        console.log(event.target.value)
-        const tempItems = items
-        console.log(tempItems)
-        var index = tempItems.map(e => e.id).indexOf(parseInt(event.target.name));
-        const singlePrice = tempItems[index].singlePrice
-        console.log(singlePrice)
-        tempItems[index].amount = parseInt(event.target.value)
-        tempItems[index].price = singlePrice * event.target.value
-        setAmount(event.target.name, event.target.value)
-        let price = 0
-        for(const item of tempItems){
-            price += item.price
+        if(event.target.value > 0){
+            console.log(event.target.name)
+            console.log(event.target.value)
+            const tempItems = items
+            console.log(tempItems)
+            var index = tempItems.map(e => e.id).indexOf(parseInt(event.target.name));
+            const singlePrice = tempItems[index].singlePrice
+            console.log(singlePrice)
+            tempItems[index].amount = parseInt(event.target.value)
+            tempItems[index].price = singlePrice * event.target.value
+            setAmount(event.target.name, event.target.value)
+            let price = 0
+            for(const item of tempItems){
+                price += item.price
+            }
+            setTotal(price)
         }
-        setTotal(price)
+       
     }
     const removeInCheckout = (id) => {
         const tempItems = items
